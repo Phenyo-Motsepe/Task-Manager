@@ -29,3 +29,16 @@ while True:
         complete_task(number)
     elif choice == "4":
         break
+import json
+
+def save_tasks():
+    with open("tasks.json", "w") as file:
+        json.dump(tasks, file)
+
+def load_tasks():
+    global tasks
+    try:
+        with open("tasks.json", "r") as file:
+            tasks = json.load(file)
+    except FileNotFoundError:
+        tasks = []
