@@ -1,3 +1,25 @@
+
+#--------- STAGE 1 — Python Core Foundations----------
+    # Goal: Think in Python
+
+# What you’ll build
+    # A Task & Habit Tracker (CLI)
+
+# Features
+    # Add tasks
+    # View tasks
+    # Mark tasks as completed
+    # Simple statistics (tasks done today, this week)
+
+# Concepts you’ll learn
+    # Variables & data types
+    # Lists & dictionaries
+    # Functions
+    # Loops
+    # Conditionals
+    # Input/output
+    # Basic error handling
+
 tasks = []
 
 def add_task(title):
@@ -29,6 +51,22 @@ while True:
         complete_task(number)
     elif choice == "4":
         break
+
+#----------- STAGE 2—Files & Data Persistence-------------
+
+    # Goal: Make data survive program restarts
+
+# New Features  
+    # Save tasks to a file 
+    # Load tasks on startup
+    # Export reports
+
+# Concepts
+    # File handling (open)
+    # JSON
+    # with statements
+    # Error handling (try/except)
+
 import json
 
 def save_tasks():
@@ -42,6 +80,20 @@ def load_tasks():
             tasks = json.load(file)
     except FileNotFoundError:
         tasks = []
+
+#-------- STAGE 3 — Object-Oriented Programming (OOP)
+
+# Goal: Write professional-quality code
+
+# Upgrade
+    # Convert tasks into classes
+
+# Concepts
+    # Classes & objects
+    # __init__
+    # Methods
+    # Encapsulation
+
 class Task:
     def __init__(self, title):
         self.title = title
