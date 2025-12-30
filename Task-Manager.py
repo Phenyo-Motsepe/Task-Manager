@@ -1,3 +1,4 @@
+import pandas as pd
 
 #--------- STAGE 1 — Python Core Foundations----------
     # Goal: Think in Python
@@ -101,3 +102,24 @@ class Task:
 
     def complete(self):
         self.completed = True
+
+#--------STAGE 4 — Data Analysis & Visualization
+    # Goal: Learn skills used in ML & data roles
+
+# New Features
+    # Track completion history
+    # Analyze productivity trends
+    # Visualize results
+
+# Concepts
+    # pandas
+    # matplotlib
+    # DataFrames
+    # Basic statistics
+
+
+
+df = pd.DataFrame(tasks)
+completed_rate = df["completed"].mean()
+print("Completion Rate:", completed_rate)
+
