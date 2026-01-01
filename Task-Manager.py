@@ -1,4 +1,5 @@
 import pandas as pd
+import requests
 
 #--------- STAGE 1 — Python Core Foundations----------
     # Goal: Think in Python
@@ -122,4 +123,20 @@ class Task:
 df = pd.DataFrame(tasks)
 completed_rate = df["completed"].mean()
 print("Completion Rate:", completed_rate)
+
+#-------- STAGE 5 — Working with APIs & Libraries----------
+
+# Goal: Make your app talk to the outside world
+# New Features
+    # Fetch weather data
+    # Auto-adjust daily goals
+    # Send reminders
+
+# Concepts
+    # APIs
+    # requests
+    # Environment variables
+
+response = requests.get("https://api.open-meteo.com/v1/forecast")
+data = response.json()
 
