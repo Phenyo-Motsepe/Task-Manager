@@ -302,3 +302,112 @@ class TaskManager:
             print("⚠️  pandas not installed. Install with: pip install pandas")
         except Exception as e:
             print(f"⚠️  Error during analysis: {e}")
+
+
+# ============================================================================
+# STAGE 1: CLI Interface
+# ============================================================================
+
+def display_menu():
+    """Display the main menu"""
+    print("\n" + "="*60)
+    print("🎯 TASK MANAGER")
+    print("="*60)
+    print("1. ➕ Add Task")
+    print("2. 📋 Show All Tasks")
+    print("3. ✅ Show Completed Tasks")
+    print("4. ⬜ Show Pending Tasks")
+    print("5. ✔️  Complete Task")
+    print("6. ↩️  Uncomplete Task")
+    print("7. 🗑️  Delete Task")
+    print("8. 📊 Show Statistics")
+    print("9. 📈 Pandas Analysis")
+    print("10. 📄 Export Report")
+    print("11. 🚪 Exit")
+    print("="*60)
+
+
+def get_int_input(prompt: str) -> Optional[int]:
+    """Get integer input with error handling"""
+    try:
+        return int(input(prompt))
+    except ValueError:
+        print("❌ Please enter a valid number.")
+        return None
+
+
+def main():
+    """Main application loop"""
+    manager = TaskManager()
+    
+    print("\n🎉 Welcome to Task Manager!")
+    print("Stay organized and boost your productivity!\n")
+    
+    while True:
+        display_menu()
+        choice = input("👉 Choose an option (1-11): ").strip()
+        
+        try:
+            if choice == "1":
+                title = input("📝 Enter task title: ")
+                task = manager.add_task(title)
+                print(f"✅ Task '{task.title}' added successfully! (ID: {task.id})")
+            
+            elif choice == "2":
+                manager.show_tasks()
+            
+            elif choice == "3":
+                manager.show_tasks(filter_completed=True)
+            
+            elif choice == "4":
+                manager.show_tasks(filter_completed=False)
+            
+            elif choice == "5":
+                task_id = get_int_input("🔢 Enter task ID to complete: ")
+                if task_id:
+                    manager.complete_task(task_id)
+            
+            elif choice == "6":
+                task_id = get_int_input("🔢 Enter task ID to uncomplete: ")
+                if task_id:
+                    manager.uncomplete_task(task_id)
+            
+            elif choice == "7":
+                task_id = get_int_input("🔢 Enter task ID to delete: ")
+                if task_id:
+                    confirm = input(f"⚠️  Are you sure? (yes/no): ").lower()
+                    if confirm == "yes":
+                        manager.delete_task(task_id)
+                    else:
+                        print("❌ Deletion cancelled.")
+            
+            elif choice == "8":
+                manager.show_statistics()
+            
+            elif choice == "9":
+                manager.analyze_with_pandas()
+            
+            elif choice == "10":
+                filename = input("📄 Enter filename (default: task_report.txt): ").strip()
+                manager.export_report(filename or "task_report.txt")
+            
+            elif choice == "11":
+                print("\n👋 Thanks for using Task Manager! Stay productive!")
+                manager.save_tasks()
+                break
+            
+            else:
+                print("❌ Invalid option. Please choose 1-11.")
+        
+        except ValueError as e:
+            print(f"❌ Error: {e}")
+        except KeyboardInterrupt:
+            print("\n\n👋 Exiting... Your tasks have been saved!")
+            manager.save_tasks()
+            break
+        except Exception as e:
+            print(f"⚠️  Unexpected error: {e}")
+
+
+if __name__ == "__main__":
+    main()
